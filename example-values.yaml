@@ -2,17 +2,20 @@ dashbase:
   https: false
   ingress:
     enabled: true
-    host: 127.0.0.1.xip.io
-  accounts:
-    prometheus: true
+    host: chaotest.dashbase.io
+
   services:
-    prometheus:
-      enabled: true
-    pushgateway:
-      enabled: true
     grafana:
-      enabled: true
-    alertmanager:
-      enabled: false
+      image: dashbase/grafana:nightly
+
+    prometheus:
+      storage:
+        size: "30Gi"
+
     influxdb:
-      enabled: true
+      storage:
+        size: "30Gi"
+      environment:
+        INFLUXDB_DATA_CACHE_MAX_MEMORY_SIZE: 2g
+        INFLUXDB_ADMIN_USER: dashbase_monitor
+        INFLUXDB_ADMIN_PASSWORD: dashbase_monitor
