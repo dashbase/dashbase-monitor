@@ -1,29 +1,18 @@
 dashbase:
   https: false
   ingress:
-    enable: true
+    enabled: true
     host: 127.0.0.1.xip.io
   accounts:
     prometheus: true
   services:
     prometheus:
-      expose: true
-      environment:
-        ENABLE_ALERTMANAGER: "false"
-        ENABLE_KUBERNETES_SCRAPE: "true"
-        ENABLE_KUBERNETES_NODES_SCRAPE: "true"
+      enabled: true
     pushgateway:
-      enable: true
+      enabled: true
     grafana:
-      enable: true
+      enabled: true
     alertmanager:
-      enable: false
+      enabled: false
     influxdb:
-      environment:
-        INFLUXDB_DATA_CACHE_MAX_MEMORY_SIZE: 2g
-        INFLUXDB_ADMIN_USER: dashbase_monitor
-        INFLUXDB_ADMIN_PASSWORD: S0m3R4nd0m3P4ssw0rd
-        INFLUXDB_READ_USER: dashbase_reader
-        INFLUXDB_READ_USER_PASSWORD: dashbase_reader
-        INFLUXDB_WRITE_USER: dashbase_writer
-        INFLUXDB_WRITE_USER_PASSWORD: dashbase_writer
+      enabled: true
