@@ -1,0 +1,36 @@
+---
+- name: "Debian | Ensure the system can use the HTTPS transport for APT"
+  stat:
+    path: /usr/lib/apt/methods/https
+  register: apt_https_transport
+
+- name: "Debian | Install APT HTTPS transport"
+  apt:
+    name: "apt-transport-https"
+    #  When you see some Error like:
+    #     The method driver /usr/lib/apt/methods/https could not be found.
+    #  Need set update_cache: no (default:yes)
+    # update_cache: no
+    state: present
+  when:
+    - not apt_https_transport.stat.exists
+  become: yes
+
+- name: "Debian | Install telegraf package"
+  apt:
+    deb: "https://dl.influxdata.com/telegraf/releases/telegraf_{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}_amd64.deb"
+  notify: "Restart Telegraf"
+  become: yes
+
+- name: "Debian | Install NightWatch package"
+  apt:
+    deb: "https://github.com/dashbase/night-watch/releases/download/v{{ nightwatch_version }}/night-watch_{{ nightwatch_version }}_Linux_64-bit.deb"
+  become: yes
+
+- name: "Debian | Install cron"
+  apt:
+    name: "cron"
+    force: True
+  become: yes
+  when:
+    - prometheus_pushgateway_enable

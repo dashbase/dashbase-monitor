@@ -1,0 +1,30 @@
+---
+# description: RedHat specific installation
+
+- name: " RedHat | Install Telegraf package"
+  yum:
+    name: "https://dl.influxdata.com/telegraf/releases/telegraf-{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}.x86_64.rpm"
+    state: present
+  become: yes
+  environment:
+      http_proxy: {{ http_proxy }}
+      https_proxy: {{ https_proxy }}
+
+- name: " RedHat | Install NightWatch package"
+  yum:
+    name: "https://github.com/dashbase/night-watch/releases/download/v{{ nightwatch_version }}/night-watch_{{ nightwatch_version }}_Linux_64-bit.rpm"
+    state: present
+  become: yes
+  environment:
+      http_proxy: {{ http_proxy }}
+      https_proxy: {{ https_proxy }}
+
+- name: "RedHat | Install cron package"
+  yum:
+    name: "crontabs"
+  become: yes
+  environment:
+      http_proxy: {{ http_proxy }}
+      https_proxy: {{ https_proxy }} 
+  when:
+    - prometheus_pushgateway_enable
