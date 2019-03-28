@@ -12,7 +12,8 @@ dashbase:
       storage:
         size: "30Gi"
 
-    influxdb:
+    influxdb: # OPTIONAL; only necessary when using monitoring stack is deployed in a different K8s cluster from Dashbase
+      enabled: false
       storage:
         size: "30Gi"
       environment:
