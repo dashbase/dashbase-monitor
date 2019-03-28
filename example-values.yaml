@@ -2,7 +2,7 @@ dashbase:
   https: false
   ingress:
     enabled: true
-    host: chaotest.dashbase.io
+    host: 127.0.0.1.xip.io
 
   services:
     grafana:
