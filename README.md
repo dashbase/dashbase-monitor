@@ -1,7 +1,7 @@
 ## Dashbase Monitor
 This document describes how to set up metrics-based monitor cluster onto Kubernetes.
 
-####Concepts
+#### Concepts
 * Kubernetes descriptor(aka values.yml)
 
     It's a yaml-based file which describe how services configure and work. Here's an [example](example-values.yaml).
