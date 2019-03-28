@@ -63,7 +63,7 @@ This document describes how to set up metrics-based monitor cluster onto Kuberne
     ```
 3. Get the status. It runs well if all pods are `1/1`.
    ```bash
-   kc get po -w
+   kubectl get po -w
    NAME                                                     READY   STATUS    RESTARTS   AGE
    alertmanager-0                                           1/1     Running   0          38m
    grafana-0                                                1/1     Running   0          38m
@@ -73,6 +73,7 @@ This document describes how to set up metrics-based monitor cluster onto Kuberne
    prometheus-0                                             1/1     Running   0          38m
    pushgateway-7bf4465f99-4qgv6                             1/1     Running   0          38m
    ```
+Then you can visit pushgateway via `pushgateway.dashbase-monitor.yourhost.com`, grafana via `grafana.dashbase-monitor.yourhost.com`, etc.
 #### further configuration
 
 
